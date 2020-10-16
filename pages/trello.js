@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import React from 'react'
 import State from 'components/base/State'
+import {StaticRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import ShowCard from '../components/base/ShowCard';
 
 
 const StyledDiv = styled.div`
@@ -24,19 +26,40 @@ const StyledTitle = styled.h1`
 const CustomState = styled(State)`
     background-color: red;
 `;
+/*
+const content = [["Title: ", "card"],["Description: ", "description"],[("assigned" + ": "), "person"],["Date: ", "date"]]
 
+<Link to={`/${content}`} exact><li>Card</li></Link>
 
+*/
 
+const content = [["Title: ", "card"],["Description: ", "description"],[("assigned" + ": "), "person"],["Date: ", "date"]]
 export default function Home() {
   return (
     <>
-      <StyledTitle>Cards</StyledTitle>
-      <StyledDiv>
-        <CustomState name="To Do" assign="Requester" />
-        <CustomState name="In Progress" assign="Assignee" />
-        <CustomState name="Done" assign="Assignee" />
-      </StyledDiv>
+      <Router>
+        <StyledTitle>Cards</StyledTitle>
+        <ul>
+        <Link to={`/${content[0][1]}`} exact><li>Card</li></Link>
+        <Link to="/trello" exact ><li>Home</li></Link> 
+        </ul>
+        
+        
+        <Switch>
+          <Route path="/" exact component={Trell} />
+          <Route path="/trello/:id" exact component={ShowCard} />
+        </Switch>
+        
+      </Router>
     </>
   )
 }
 
+
+const Trell = () => (
+  <StyledDiv>
+    <CustomState name="To Do" assign="Requester" />
+    <CustomState name="In Progress" assign="Assignee" />
+    <CustomState name="Done" assign="Assignee" />
+  </StyledDiv>
+)

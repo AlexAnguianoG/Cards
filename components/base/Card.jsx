@@ -17,32 +17,16 @@ const StyledCard = styled.div`
     padding: 5px 5px;
     color: #306B7F;
     background-color: white;
-    margin: 0.5rem 0;
+    margin-top: 0.5rem;
     border-radius: 0.3rem;
     box-shadow: 1px 2px 0px 0px rgba(0,0,0,0.1);
     font-size: 0.9rem;
 `;
 
-const StyledButton = styled.button`
-    outline: none;
-    margin-top: 5px;
-    color: #306B7F;
-    background-color: white;
-    height: 20px;
-    width: 100%;
-    border: 1px solid #306B7F;
-    cursor: pointer;
-    &:hover {
-        color: white;
-        background-color: #73AEC2;
-        border: 1px solid #73AEC2;
-    }
-`;
-
 const Card = ({ card }) => {
     return (
         <StyledCard>
-            { card.map((s)=> s.map(
+            {card.map((s)=> s.map(
                 (t,id)=> {
                     if (id==0){
                         return <StyledTitle>{t}</StyledTitle>
@@ -51,11 +35,8 @@ const Card = ({ card }) => {
                     }
                 }
             ))}
-            <StyledButton>Show</StyledButton>
         </StyledCard>
     )
 };
-
-
 
 export default Card
